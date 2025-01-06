@@ -8,20 +8,16 @@ const { NotImplementedError } = require('../extensions/index.js');
 */
 class BinarySearchTree {
   constructor() {
-    this.root = null;
+    this.rootNode = null;
   }
 
   root() {
-    return this.root;
-    //throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+    return this.rootNode;
   }
 
   add(data) {
-    //throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
-    if (!this.root) {
-      this.root = new Node(data);
+    if (!this.rootNode) {
+      this.rootNode = new Node(data);
       return;
     }
 
@@ -41,13 +37,11 @@ class BinarySearchTree {
       }
     };
 
-    insertNode(this.root, data);
+    insertNode(this.rootNode, data);
   }
 
   has(data) {
-    //throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
-    let currentNode = this.root;
+    let currentNode = this.rootNode;
 
     while (currentNode) {
       if (data === currentNode.data) {
@@ -63,9 +57,7 @@ class BinarySearchTree {
   }
 
   find(data) {
-    //throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
-    let currentNode = this.root;
+    let currentNode = this.rootNode;
 
     while (currentNode) {
       if (data === currentNode.data) {
@@ -81,8 +73,6 @@ class BinarySearchTree {
   }
 
   remove(data) {
-    //throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
     const removeNode = (node, data) => {
       if (!node) {
         return null;
@@ -95,22 +85,19 @@ class BinarySearchTree {
         node.right = removeNode(node.right, data);
         return node;
       } else {
-        // Node to be deleted found
         if (!node.left && !node.right) {
-          // Node has no children
           return null;
         } else if (!node.left) {
-          // Node has only right child
           return node.right;
         } else if (!node.right) {
-          // Node has only left child
           return node.left;
         } else {
-          // Node has two children
           let minNode = node.right;
+
           while (minNode.left) {
             minNode = minNode.left;
           }
+
           node.data = minNode.data;
           node.right = removeNode(node.right, minNode.data);
           return node;
@@ -118,26 +105,26 @@ class BinarySearchTree {
       }
     };
 
-    this.root = removeNode(this.root, data);
+    this.rootNode = removeNode(this.rootNode, data);
   }
 
   min() {
-    //throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
-    let currentNode = this.root;
+    let currentNode = this.rootNode;
+
     while (currentNode.left) {
       currentNode = currentNode.left;
     }
+
     return currentNode.data;
   }
 
   max() {
-    //throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
-    let currentNode = this.root;
+    let currentNode = this.rootNode;
+
     while (currentNode.right) {
       currentNode = currentNode.right;
     }
+
     return currentNode.data;
   }
 }
